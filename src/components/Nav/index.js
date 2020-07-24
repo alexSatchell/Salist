@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Switch,
-} from 'react-router-dom';
+import React, { Fragment, useContext } from 'react';
 import SearchInput from '../Search';
+import AuthContext from '../../context/auth/authContext';
 
 import {
   ContainerNav,
@@ -13,41 +8,51 @@ import {
   LinkContainer,
   NavList,
   ListItem,
-  Input,
-  StlyedLink,
+  StyledLink,
 } from './styles';
 
-const ACTIVE = { color: 'blue' };
-
 const Navbar = () => {
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated, user } = authContext;
+
+  const authLinks = (
+    <Fragment>
+      <ListItem>
+        <StyledLink to='/account'>{user && user.name}</StyledLink>
+      </ListItem>
+    </Fragment>
+  );
+
+  const guestLinks = (
+    <Fragment>
+      <ListItem>
+        <StyledLink to='/login'>Account</StyledLink>
+      </ListItem>
+    </Fragment>
+  );
+
   return (
     <ContainerNav>
       <NavContent>
-        <Router>
-          <Switch>
-            <LinkContainer>
-              <NavList>
-                <ListItem>
-                  <StlyedLink exact to='/'>
-                    Home
-                  </StlyedLink>
-                </ListItem>
-                <ListItem>
-                  <StlyedLink to='/upload'>Upload</StlyedLink>
-                </ListItem>
-                <ListItem>
-                  <SearchInput />
-                </ListItem>
-                <ListItem>
-                  <StlyedLink to='/library'>Library</StlyedLink>
-                </ListItem>
-                <ListItem>
-                  <StlyedLink to='/account'>Account</StlyedLink>
-                </ListItem>
-              </NavList>
-            </LinkContainer>
-          </Switch>
-        </Router>
+        <LinkContainer>
+          <NavList>
+            <ListItem>
+              <StyledLink exact to='/'>
+                Home
+              </StyledLink>
+            </ListItem>
+            <ListItem>
+              <StyledLink to='/upload'>Upload</StyledLink>
+            </ListItem>
+            <ListItem>
+              <SearchInput />
+            </ListItem>
+            <ListItem>
+              <StyledLink to='/library'>Library</StyledLink>
+            </ListItem>
+            {isAuthenticated ? authLinks : guestLinks}
+          </NavList>
+        </LinkContainer>
       </NavContent>
     </ContainerNav>
   );

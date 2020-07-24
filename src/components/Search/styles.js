@@ -1,5 +1,4 @@
-import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { QUERIES, COLORS } from '../../styling/styles';
 
 export const Input = styled.input`
@@ -34,6 +33,6 @@ export const Input = styled.input`
   }
 
   @media (${QUERIES.small}) {
-    width: 30rem;
+    width: 32rem;
   }
 `;

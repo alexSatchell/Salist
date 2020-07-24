@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { QUERIES, COLORS } from '../../styling/styles';
 
@@ -8,8 +8,7 @@ export const ContainerNav = styled.div`
   width: 100%;
   /* border: 3px solid green; */
 
-  @media (${QUERIES.large}) {
-  }
+  height: auto;
 `;
 
 export const NavContent = styled.div``;
@@ -20,8 +19,6 @@ export const LinkContainer = styled.div`
   justify-content: center;
   width: 100%;
   padding: 1rem;
-
-  /* border: 3px solid black; */
 
   @media (${QUERIES.small}) {
     display: grid;
@@ -91,7 +88,7 @@ export const ListItem = styled.li`
   /* border: 1px solid purple; */
 `;
 
-export const StlyedLink = styled(NavLink)`
+export const StyledLink = styled(NavLink)`
   outline: none;
   text-decoration: none;
   font-size: 1.6rem;
@@ -109,7 +106,7 @@ export const StlyedLink = styled(NavLink)`
     height: 2px;
     left: 50%;
     position: absolute;
-    background: ${COLORS.cornFlowerBlue};
+    background: ${COLORS.glaucous};
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
   }
 
